@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ServiceCategory } from './components/ServiceCategory';
-import { ClientForm } from './components/ClientForm';
-import { PricingSummary } from './components/PricingSummary';
-import { CustomFeatureForm } from './components/CustomFeatureForm';
-import { TechComparison } from './components/TechComparison';
-import { categories, services } from './data/services';
-import { SelectedServices, ClientInfo, CustomFeature } from './types';
-import { Code, ArrowDown } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ServiceCategory } from "./components/ServiceCategory";
+import { ClientForm } from "./components/ClientForm";
+import { PricingSummary } from "./components/PricingSummary";
+import { CustomFeatureForm } from "./components/CustomFeatureForm";
+import { TechComparison } from "./components/TechComparison";
+import { categories, services } from "./data/services";
+import { SelectedServices, ClientInfo, CustomFeature } from "./types";
+import { Code, ArrowDown } from "lucide-react";
 
 function App() {
-  const [selectedServices, setSelectedServices] = useState<SelectedServices>({});
+  const [selectedServices, setSelectedServices] = useState<SelectedServices>(
+    {}
+  );
   const [customFeatures, setCustomFeatures] = useState<CustomFeature[]>([]);
   const [showComparison, setShowComparison] = useState(false);
   const [clientInfo, setClientInfo] = useState<ClientInfo>({
-    name: '',
-    email: '',
-    company: '',
-    requirements: '',
+    name: "",
+    email: "",
+    company: "",
+    requirements: "",
   });
 
   const handleServiceToggle = (serviceId: string) => {
@@ -33,7 +35,7 @@ function App() {
 
   const handleExportPDF = () => {
     // TODO: Implement PDF export functionality
-    console.log('Exporting PDF...');
+    console.log("Exporting PDF...");
   };
 
   return (
@@ -46,7 +48,9 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-2">
             <Code className="w-8 h-8 text-blue-600" />
-            <h1 className="text-2xl font-bold text-gray-900">DevQuote Calculator</h1>
+            <h1 className="text-2xl font-bold text-gray-900">
+              DevQuote Calculator
+            </h1>
           </div>
         </div>
       </motion.header>
@@ -59,7 +63,9 @@ function App() {
           whileTap={{ scale: 0.99 }}
         >
           <span className="font-medium">
-            {showComparison ? 'Hide Tech Stack Comparison' : 'Compare Tech Stacks'}
+            {showComparison
+              ? "Hide Tech Stack Comparison"
+              : "Compare Tech Stacks"}
           </span>
           <motion.div
             animate={{ rotate: showComparison ? 180 : 0 }}
@@ -77,7 +83,10 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <ClientForm clientInfo={clientInfo} onClientInfoChange={setClientInfo} />
+              <ClientForm
+                clientInfo={clientInfo}
+                onClientInfoChange={setClientInfo}
+              />
             </motion.div>
             {categories.map((category, index) => (
               <motion.div
@@ -113,6 +122,7 @@ function App() {
               services={services}
               customFeatures={customFeatures}
               onExportPDF={handleExportPDF}
+              clientInfo={clientInfo}
             />
           </motion.div>
         </div>

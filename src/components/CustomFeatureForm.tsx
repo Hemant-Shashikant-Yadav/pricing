@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
-import { Plus } from 'lucide-react';
-import { CustomFeature } from '../types';
+import React, { useState } from "react";
+import { Plus } from "lucide-react";
+import { CustomFeature } from "../types";
 
 interface CustomFeatureFormProps {
   onAddFeature: (feature: CustomFeature) => void;
 }
 
-export const CustomFeatureForm: React.FC<CustomFeatureFormProps> = ({ onAddFeature }) => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
+export const CustomFeatureForm: React.FC<CustomFeatureFormProps> = ({
+  onAddFeature,
+}) => {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (name && price) {
       onAddFeature({
         name,
-        price: Number(price)
+        price: Number(price),
       });
-      setName('');
-      setPrice('');
+      setName("");
+      setPrice("");
     }
   };
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">Add Custom Feature</h2>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        Add Custom Feature
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
             Feature Name
           </label>
           <input
@@ -40,8 +47,11 @@ export const CustomFeatureForm: React.FC<CustomFeatureFormProps> = ({ onAddFeatu
           />
         </div>
         <div>
-          <label htmlFor="price" className="block text-sm font-medium text-gray-700">
-            Price ($)
+          <label
+            htmlFor="price"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Price (₹)
           </label>
           <input
             type="number"

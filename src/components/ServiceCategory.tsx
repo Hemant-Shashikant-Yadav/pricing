@@ -1,7 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Globe, LayoutGrid as Browser, Smartphone, Database, Server, Layout } from 'lucide-react';
-import { Category, SelectedServices, ServiceOption } from '../types';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Globe,
+  LayoutGrid as Browser,
+  Smartphone,
+  Database,
+  Server,
+  Layout,
+} from "lucide-react";
+import { Category, SelectedServices, ServiceOption } from "../types";
 
 interface ServiceCategoryProps {
   category: Category;
@@ -16,7 +23,7 @@ const iconMap = {
   Smartphone,
   Database,
   Server,
-  Layout
+  Layout,
 };
 
 export const ServiceCategory: React.FC<ServiceCategoryProps> = ({
@@ -26,7 +33,9 @@ export const ServiceCategory: React.FC<ServiceCategoryProps> = ({
   onServiceToggle,
 }) => {
   const Icon = iconMap[category.icon as keyof typeof iconMap];
-  const categoryServices = services.filter((service) => service.category === category.id);
+  const categoryServices = services.filter(
+    (service) => service.category === category.id
+  );
 
   return (
     <motion.div
@@ -35,10 +44,7 @@ export const ServiceCategory: React.FC<ServiceCategoryProps> = ({
       transition={{ duration: 0.2 }}
     >
       <div className="flex items-center mb-4">
-        <motion.div
-          whileHover={{ rotate: 360 }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
           <Icon className="w-6 h-6 text-blue-600 mr-2" />
         </motion.div>
         <h2 className="text-xl font-semibold text-gray-800">{category.name}</h2>
@@ -61,7 +67,9 @@ export const ServiceCategory: React.FC<ServiceCategoryProps> = ({
               />
               <span className="ml-2 text-gray-700">{service.label}</span>
             </label>
-            <span className="text-gray-600 font-medium">${service.price.toLocaleString()}</span>
+            <span className="text-gray-600 font-medium">
+              ₹{service.price.toLocaleString()}
+            </span>
           </motion.div>
         ))}
       </div>
