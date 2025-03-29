@@ -6,6 +6,21 @@ import {
   StyleSheet,
   Font,
 } from "@react-pdf/renderer";
+
+// Add this font registration before the styles definition
+Font.register({
+  family: "NotoSans",
+  fonts: [
+    {
+      src: "https://fonts.gstatic.com/s/notosans/v28/o-0IIpQlx3QUlC5A4PNr5TRA.woff2",
+    },
+    {
+      src: "https://fonts.gstatic.com/s/notosans/v28/o-0NIpQlx3QUlC5A4PNjXhFVZNyB.woff2",
+      fontWeight: "bold",
+    },
+  ],
+});
+
 import {
   ServiceOption,
   SelectedServices,
@@ -62,6 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#374151",
     textAlign: "right",
+    fontFamily: "Helvetica",
   },
   clientInfo: {
     marginBottom: 8,
@@ -94,6 +110,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#ffffff",
     fontWeight: "bold",
+    fontFamily: "Helvetica",
   },
   footer: {
     position: "absolute",
@@ -166,7 +183,7 @@ export const QuotePDF: React.FC<QuotePDFProps> = ({
             <View key={service.id} style={styles.row}>
               <Text style={styles.label}>{service.label}</Text>
               <Text style={styles.value}>
-                ₹{service.price.toLocaleString()}
+                Rs. {service.price.toLocaleString()}
               </Text>
             </View>
           ))}
@@ -196,7 +213,7 @@ export const QuotePDF: React.FC<QuotePDFProps> = ({
         </View>
 
         <Text style={styles.footer}>
-          This quote is valid for 30 days from the date of generation. All
+          This quote is valid for 10 days from the date of generation. All
           prices are in USD and subject to applicable taxes.
         </Text>
       </Page>
